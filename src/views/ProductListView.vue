@@ -10,17 +10,20 @@
         <v-spacer></v-spacer>
         <v-form ref="form" class="mt-6">
 
-          <v-col cols="12" class="d-flex align-center pa-0 h-auto">
-            <v-text-field
-            label="Search"
-            clearable
-            color="white"
-            v-model="search"
-            append-outer-icon="mdi-magnify"
-            @click:append-outer="handleSearch"
-            ></v-text-field>
+          <v-form @submit.prevent="handleSearch">
+            <v-col cols="12" class="d-flex align-center pa-0 h-auto">
 
-          </v-col>
+              <v-text-field
+              label="Search"
+              clearable
+              color="white"
+              v-model="search"
+              append-outer-icon="mdi-magnify"
+              @click:append-outer="handleSearch"
+              ></v-text-field>
+              
+            </v-col>
+          </v-form>
 
         </v-form>
         <v-spacer></v-spacer>
@@ -42,27 +45,27 @@
       <v-row justify="center" class="ma-0">
         <v-col md="3" sm="6" xs="10" v-for="product in products"
         v-bind:key="product.id">
-          <router-link :to="`productList/${product.id}`">
+          <router-link :to="`/product/${product.id}`">
             <v-card
-                class="mx-auto my-12"
-                max-width="374"
-                
+              class="mx-auto my-12"
+              max-width="374"
               >
-                <v-img
-                  height="200"
-                  :src="product.image"
-                  alt="picture"
-                ></v-img>
-            
-                <v-card-title>{{product.name}}</v-card-title>
-            
-                <v-card-text>
-                  <div>{{product.type}}</div>
-            
-                  <div class="text-subtitle-1">
-                    $ {{product.price}}
-                  </div>
-                </v-card-text>
+              <!-- @click="gotoPath(`${product.id}`)" -->
+              <v-img
+                height="200"
+                :src="product.image"
+                alt="picture"
+              ></v-img>
+          
+              <v-card-title>{{product.name}}</v-card-title>
+          
+              <v-card-text>
+                <div>{{product.type}}</div>
+          
+                <div class="text-subtitle-1">
+                  $ {{product.price}}
+                </div>
+              </v-card-text>
             
             </v-card>
           </router-link>
@@ -101,6 +104,9 @@ export default {
   },
 
   methods: {
+    // gotoPath(path) {
+    //   this.$router.push(path);
+    // },
     // get random background image 
     async getProducts() {
       const { data } = await axios.get('product');

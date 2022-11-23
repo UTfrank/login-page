@@ -70,7 +70,7 @@
 <script>
 import axios from "axios"
 export default {
-
+  name: "ProductDetailView",
   data() {
     return {
       productId: this.$route.params.id,

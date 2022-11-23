@@ -1,18 +1,21 @@
 <template>
   <v-app>
-    <ProductListView />
+    <!-- <ProductListView /> -->
+    <RouterView></RouterView>
   </v-app>
 </template>
 
 <script>
 /* eslint-disable */
-import ProductListView from './views/ProductListView.vue';
+import { RouterView } from 'vue-router';
+import ProductListView from './views/ProductListView.vue';  
 
 export default {
   name: 'App',
 
   components: {
-    ProductListView
+    ProductListView,
+    RouterView
 },
 
   
